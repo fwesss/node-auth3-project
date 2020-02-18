@@ -1,2 +1,8 @@
 .DS_Store
 node_modules/
+.vscode
+yarn.lock
+**/*.db3
+build/
+.env
+typings/
