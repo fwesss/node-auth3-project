@@ -29,6 +29,7 @@
   ],
   "rules": {
     "strict": ["error", "never"],
+    "no-console": "off",
     "optimize-regex/optimize-regex": "warn",
     "spaced-comment": ["error", "always", { "markers": ["/"] }],
     "import/extensions": [
