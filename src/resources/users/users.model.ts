@@ -18,7 +18,7 @@ const findBy = (filter: { [key: string]: any }): QueryBuilder =>
     .select('*')
     .where(filter)
 
-const insert = (user: Omit<User, 'id'>): Promise<QueryBuilder> =>
+const insert = (user: Omit<User, 'id'>): Promise<User> =>
   db('users')
     .insert(user)
     .then(ids => findBy({ id: ids[0] }).first())

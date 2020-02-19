@@ -1,8 +1,17 @@
+/* eslint-disable max-classes-per-file */
 import { Request, Response, NextFunction } from 'express'
-import { UnauthorizedError } from 'express-jwt'
 
 import { ValidationError } from '../../utils/validator'
 
+export class UnauthorizedError extends Error {
+  constructor(error: { message: string }) {
+    super()
+    this.name = 'UnauthorizedError'
+    this.message = error.message
+    Error.call(this, error.message)
+    Error.captureStackTrace(this, this.constructor)
+  }
+}
 export class DatabaseError extends Error {
   dbMessage: {
     errno: number

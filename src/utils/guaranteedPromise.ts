@@ -1,7 +1,7 @@
 type GuaranteedPromise<T> = Promise<
   | { ok: boolean; data: T; error: null }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  | { ok: boolean; data: null; error: any }
+  | { ok: boolean; data: any; error: any }
 >
 
 const guaranteedPromise = <T>(promise: Promise<T>): GuaranteedPromise<T> =>
