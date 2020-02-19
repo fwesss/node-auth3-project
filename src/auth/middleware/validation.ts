@@ -36,19 +36,25 @@ const checkValidation = (
   req: Request,
   _res: Response,
   next: NextFunction
-): void =>
-  didItValidate(
-    req.path.includes('register')
-      ? registerValidationResult(req)
-      : loginValidationResult(req)
-  )
+): void => {
+  if (req.path.includes('register')) {
+    return didItValidate(registerValidationResult(req))
+      ? next()
+      : next(
+          new ValidationError(
+            'Submitted data is incomplete or incorrect',
+            registerValidationResult(req).value
+          )
+        )
+  }
+
+  return didItValidate(loginValidationResult(req))
     ? next()
     : next(
         new ValidationError(
           'Submitted data is incomplete or incorrect',
-          registerValidationResult(req).value ||
-            loginValidationResult(req).value
+          loginValidationResult(req).value
         )
       )
-
+}
 export default checkValidation
