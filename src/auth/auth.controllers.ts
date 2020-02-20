@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 
-import Users, { User } from '../resources/users/users.model'
+import Users, { User, findBy } from '../resources/users/users.model'
 import guaranteedPromise from '../utils/guaranteedPromise'
 import {
   UnauthorizedError,
@@ -56,7 +56,7 @@ const login = async (
   const { username, password } = req.body
 
   try {
-    const userToLogin = await Users.findBy({ username }).first()
+    const userToLogin = await findBy({ username }).first()
 
     if (userToLogin && bcrypt.compareSync(password, userToLogin.password)) {
       res.status(200).json({

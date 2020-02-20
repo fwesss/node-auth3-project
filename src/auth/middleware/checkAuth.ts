@@ -13,12 +13,12 @@ type DecodedJwt = {
   exp: number
 }
 
-export interface AuthorizedRequest extends Request {
-  decodedJwt: DecodedJwt
+export interface AuthorizationRequest extends Request {
+  decodedJwt?: DecodedJwt
 }
 
 const checkAuth = (
-  req: AuthorizedRequest,
+  req: AuthorizationRequest,
   _res: Response,
   next: NextFunction
 ): void => {

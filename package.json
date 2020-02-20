@@ -10,7 +10,7 @@
     "check-format": "yarn run prettier --ignore-path .gitignore --list-different",
     "check-types": "tsc --watch",
     "format": "yarn run prettier --ignore-path .gitignore --write",
-    "lint": "eslint --ext .ts .",
+    "lint": "eslint --ignore-path .gitignore --ext .ts .",
     "migrate:latest": "npx knex migrate:latest",
     "migrate:rollback": "npx knex migrate:rollback",
     "prettier": "prettier --ignore-path .gitignore \"**/*.+(json|js|ts)\"",
