@@ -13,7 +13,7 @@ export const find = (): QueryBuilder =>
   db('users').select('id', 'username', 'department')
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const findBy = (filter: { [key: string]: any }): QueryBuilder =>
+export const findBy = (filter: { [key: string]: any }): QueryBuilder =>
   db('users')
     .select('*')
     .where(filter)

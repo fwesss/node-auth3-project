@@ -1,15 +1,16 @@
-import { Request, Response, NextFunction } from 'express'
+import { Response, NextFunction } from 'express'
 
-import { find } from './users.model'
+import { AuthorizedRequest } from '../../auth/middleware/checkAuth'
+import { findBy } from './users.model'
 import { DatabaseError } from '../../server/middleware/errorHandler'
 
 const getUsers = async (
-  _req: Request,
+  req: AuthorizedRequest,
   res: Response,
   next: NextFunction
 ): Promise<void> => {
   try {
-    const users = await find()
+    const users = await findBy({ department: req.decodedJwt.department })
     res.status(200).json(users)
   } catch (error) {
     next(

@@ -10,11 +10,12 @@ import {
 } from '../server/middleware/errorHandler'
 import jwtSecret from '../secrets'
 
-const generateToken = (user: User): string =>
+const generateToken = ({ id, username, department }: User): string =>
   jwt.sign(
     {
-      subject: user.id,
-      username: user.username,
+      subject: id,
+      username,
+      department,
     },
     jwtSecret,
     {
